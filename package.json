@@ -1,0 +1,22 @@
+{
+  "name": "ai-builder-skills",
+  "version": "0.1.0",
+  "description": "Evidence-first engineering skills for AI coding agents, with a safe local installer.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "bin": { "ai-builder-skills": "dist/src/cli/index.js" },
+  "files": ["dist/src/", "skills/", "skills.json", "adapters/", "docs/", "examples/", "README.md", "LICENSE", "SECURITY.md", "CHANGELOG.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "cli": "npm run build --silent && node dist/src/cli/index.js",
+    "validate": "npm run build --silent && node dist/scripts/validate-skills.js",
+    "test": "npm run build --silent && node --test tests/*.test.mjs",
+    "test:package": "npm run build --silent && node tests/package-smoke.mjs",
+    "check": "npm run typecheck && npm run validate && npm test",
+    "prepack": "npm run check"
+  },
+  "keywords": ["agent-skills", "ai", "cursor", "codex", "claude-code", "developer-tools"],
+  "devDependencies": { "@types/node": "^22.0.0", "typescript": "^5.9.0" }
+}

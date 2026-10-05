@@ -1,0 +1,6 @@
+{
+  "id": "claude",
+  "name": "Claude Code",
+  "directory": ".claude/skills"
+}
+

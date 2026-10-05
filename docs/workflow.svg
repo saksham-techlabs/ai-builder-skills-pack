@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="176" viewBox="0 0 1040 176" role="img" aria-labelledby="title desc">
+  <title id="title">One source, predictable installation, evidence-based work</title>
+  <desc id="desc">Canonical skill Markdown and a manifest are validated, copied by a selected adapter to a project, then loaded by an agent that discovers, verifies and reports.</desc>
+  <rect width="1040" height="176" rx="16" fill="#101827"/>
+  <g font-family="system-ui, sans-serif" font-size="16" fill="#e5edf8">
+    <rect x="20" y="30" width="228" height="112" rx="10" fill="#1e3049" stroke="#57738f"/>
+    <text x="38" y="61" font-weight="700">Canonical skills</text><text x="38" y="88">SKILL + checklist + examples</text><text x="38" y="116" fill="#a5c4e7">skills.json catalog</text>
+    <rect x="282" y="30" width="212" height="112" rx="10" fill="#1e3049" stroke="#57738f"/>
+    <text x="302" y="61" font-weight="700">Validate + install</text><text x="302" y="88">Preset path + usage note</text><text x="302" y="116" fill="#a5c4e7">Owned files only</text>
+    <rect x="528" y="30" width="210" height="112" rx="10" fill="#1e3049" stroke="#57738f"/>
+    <text x="548" y="61" font-weight="700">Target project</text><text x="548" y="88">Copy the same Markdown</text><text x="548" y="116" fill="#a5c4e7">Load in your agent</text>
+    <rect x="772" y="30" width="248" height="112" rx="10" fill="#183c36" stroke="#4fa995"/>
+    <text x="792" y="61" font-weight="700">Scoped engineering task</text><text x="792" y="88">Discover → verify → report</text><text x="792" y="116" fill="#9fe0c8">Evidence + explicit unknowns</text>
+  </g>
+  <g stroke="#8ba6c5" stroke-width="2" fill="none"><path d="M252 86h24m-7-6 7 6-7 6"/><path d="M498 86h24m-7-6 7 6-7 6"/><path d="M742 86h24m-7-6 7 6-7 6"/></g>
+</svg>
+

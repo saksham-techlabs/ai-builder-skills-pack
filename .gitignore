@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+*.tgz
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+npm-debug.log*
+# Local installs created when the CLI runs inside this checkout
+.ai-builder/

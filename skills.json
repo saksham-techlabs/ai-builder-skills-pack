@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "skills": [
+    {
+      "id": "frontend-expert",
+      "name": "Frontend Expert",
+      "description": "Build and repair frontend interactions using the existing component system, accessible states and real browser evidence.",
+      "category": "frontend",
+      "tags": [
+        "components",
+        "accessibility",
+        "state"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "UI implementation",
+        "interaction bugs"
+      ]
+    },
+    {
+      "id": "nextjs-expert",
+      "name": "Next.js Expert",
+      "description": "Implement or debug Next.js routing, rendering, caching and server boundaries against the installed version.",
+      "category": "framework",
+      "tags": [
+        "nextjs",
+        "rendering",
+        "caching"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "Next.js apps",
+        "route and caching issues"
+      ]
+    },
+    {
+      "id": "backend-architect",
+      "name": "Backend Architect",
+      "description": "Design service boundaries, durable jobs and failure handling from actual backend constraints and traffic evidence.",
+      "category": "architecture",
+      "tags": [
+        "backend",
+        "jobs",
+        "reliability"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "service design",
+        "backend evolution"
+      ]
+    },
+    {
+      "id": "api-designer",
+      "name": "API Designer",
+      "description": "Design and review API contracts with explicit validation, resource authorization, compatibility and retry semantics.",
+      "category": "backend",
+      "tags": [
+        "api",
+        "contracts",
+        "validation"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "API design",
+        "integration contracts"
+      ]
+    },
+    {
+      "id": "database-optimizer",
+      "name": "Database Optimizer",
+      "description": "Investigate slow queries and safe schema/index changes using real plans, workload shape and correctness constraints.",
+      "category": "data",
+      "tags": [
+        "sql",
+        "indexes",
+        "query-plans"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "slow queries",
+        "schema performance"
+      ]
+    },
+    {
+      "id": "supabase-expert",
+      "name": "Supabase Expert",
+      "description": "Review or implement Supabase Auth, database policies, Storage and server clients with explicit tenant isolation.",
+      "category": "platform",
+      "tags": [
+        "supabase",
+        "rls",
+        "auth"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "Supabase applications",
+        "tenant isolation"
+      ]
+    },
+    {
+      "id": "security-auditor",
+      "name": "Security Auditor",
+      "description": "Audit application trust boundaries and report only evidence-backed security findings with prioritized, testable fixes.",
+      "category": "security",
+      "tags": [
+        "security",
+        "authorization",
+        "secrets",
+        "rls"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "security reviews",
+        "pre-release audits"
+      ]
+    },
+    {
+      "id": "debugging-expert",
+      "name": "Debugging Expert",
+      "description": "Resolve reproducible bugs through evidence gathering, execution tracing, root-cause isolation and minimal regression-tested fixes.",
+      "category": "quality",
+      "tags": [
+        "debugging",
+        "root-cause",
+        "regression"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "runtime failures",
+        "intermittent bugs"
+      ]
+    },
+    {
+      "id": "ui-ux-reviewer",
+      "name": "UI/UX Reviewer",
+      "description": "Review concrete user journeys for usability, accessibility and visual hierarchy, separating observed friction from preferences.",
+      "category": "design",
+      "tags": [
+        "usability",
+        "accessibility",
+        "design-review"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "interface reviews",
+        "user journeys"
+      ]
+    },
+    {
+      "id": "performance-optimizer",
+      "name": "Performance Optimizer",
+      "description": "Find measured application bottlenecks and validate focused optimizations under comparable workloads.",
+      "category": "quality",
+      "tags": [
+        "performance",
+        "profiling",
+        "latency"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "slow applications",
+        "resource usage"
+      ]
+    },
+    {
+      "id": "saas-architect",
+      "name": "SaaS Architect",
+      "description": "Design lean multi-tenant SaaS capabilities with explicit isolation, entitlements, billing state and operating-cost assumptions.",
+      "category": "architecture",
+      "tags": [
+        "saas",
+        "tenancy",
+        "billing"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "SaaS planning",
+        "multi-tenant systems"
+      ]
+    },
+    {
+      "id": "ai-rag-engineer",
+      "name": "AI RAG Engineer",
+      "description": "Build and evaluate retrieval-augmented generation with evidence quality, access filtering, provenance and cost controls.",
+      "category": "ai",
+      "tags": [
+        "rag",
+        "retrieval",
+        "evaluation"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "document Q&A",
+        "AI knowledge features"
+      ]
+    },
+    {
+      "id": "code-reviewer",
+      "name": "Code Reviewer",
+      "description": "Review a concrete diff for actionable correctness, security and compatibility regressions with precise evidence.",
+      "category": "quality",
+      "tags": [
+        "review",
+        "diff",
+        "regression"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "pull requests",
+        "change reviews"
+      ]
+    },
+    {
+      "id": "blender-3d-expert",
+      "name": "Blender 3D Expert",
+      "description": "Plan and execute editable Blender workflows with scene inspection, real scale and measured web-export budgets.",
+      "category": "3d",
+      "tags": [
+        "blender",
+        "glb",
+        "webgl",
+        "assets"
+      ],
+      "version": "0.1.0",
+      "files": [
+        "SKILL.md",
+        "CHECKLIST.md",
+        "EXAMPLES.md"
+      ],
+      "recommendedFor": [
+        "Blender scenes",
+        "web 3D assets"
+      ]
+    }
+  ]
+}
+
