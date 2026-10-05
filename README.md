@@ -1,230 +1,219 @@
+<div align="center">
+
 # AI Builder Skills Pack
-## Give your coding agent a repeatable engineering workflow.
 
-Evidence-first skills for Cursor, Codex, Claude Code and other AI coding agents — with a small, safe local installer.
+### Evidence-first engineering skills for Cursor, Codex and Claude Code
 
-**14 focused skills · One canonical source · No runtime dependencies · MIT licensed**
+Reusable workflows that make your coding agent inspect the real project, verify its claims and report what it could not check: security, debugging, Next.js, Supabase, RAG, Blender and more.
 
-> “Use the security-auditor skill to audit this project's authentication and tenant isolation.”
+[![CI](https://github.com/saksham-techlabs/ai-builder-skills-pack/actions/workflows/ci.yml/badge.svg)](https://github.com/saksham-techlabs/ai-builder-skills-pack/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Node.js 22+](https://img.shields.io/badge/node-%3E%3D22-339933?logo=node.js&logoColor=white)](package.json)
+[![TypeScript strict](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](tsconfig.json)
+[![Runtime dependencies: 0](https://img.shields.io/badge/runtime%20dependencies-0-brightgreen.svg)](package.json)
 
-The skill directs the agent to inspect the real repository, trace identity and resource access, gather evidence, rank confirmed findings and propose testable fixes. Missing access becomes an explicit verification gap, not an invented vulnerability.
+**14 skills · Cursor, Codex, Claude Code + generic preset · Safe local installer · MIT**
 
-**Status:** initial development release. Nothing has been published to npm by this setup. The intended package name is `ai-builder-skills`; availability and ownership must be checked before publication.
+</div>
 
-## Why this exists
+---
 
-A long prompt is easy to forget, drift or apply inconsistently. A useful skill preserves the decisions that matter: what to inspect, which boundaries to verify, when evidence is insufficient and how to know the work is done.
+## What it does in one example
 
-This pack provides concrete workflows, not promises that an agent will always be correct. For example, debugging follows reproduction → execution trace → falsifiable hypothesis → smallest fix → regression check. Database optimization requires a workload and query-plan evidence before recommending indexes.
+> **“Use security-auditor to inspect auth, authorization, secrets, APIs and Supabase RLS.”**
 
-## Available skills
+Instead of a generic list of possible vulnerabilities, the skill directs the agent to map trust boundaries, trace identity and resource access in your actual code, confirm each finding with a file and line, and keep unknowns separate. For example, live RLS state can't be confirmed from migrations alone, and missing access is never reported as a clean result.
 
-| Skill | Focus |
-| --- | --- |
-| [`frontend-expert`](skills/frontend-expert/SKILL.md) | Build and repair frontend interactions using the existing component system, accessible states and real browser evidence. |
-| [`nextjs-expert`](skills/nextjs-expert/SKILL.md) | Implement or debug Next.js routing, rendering, caching and server boundaries against the installed version. |
-| [`backend-architect`](skills/backend-architect/SKILL.md) | Design service boundaries, durable jobs and failure handling from actual backend constraints and traffic evidence. |
-| [`api-designer`](skills/api-designer/SKILL.md) | Design and review API contracts with explicit validation, resource authorization, compatibility and retry semantics. |
-| [`database-optimizer`](skills/database-optimizer/SKILL.md) | Investigate slow queries and safe schema/index changes using real plans, workload shape and correctness constraints. |
-| [`supabase-expert`](skills/supabase-expert/SKILL.md) | Review or implement Supabase Auth, database policies, Storage and server clients with explicit tenant isolation. |
-| [`security-auditor`](skills/security-auditor/SKILL.md) | Audit application trust boundaries and report only evidence-backed security findings with prioritized, testable fixes. |
-| [`debugging-expert`](skills/debugging-expert/SKILL.md) | Resolve reproducible bugs through evidence gathering, execution tracing, root-cause isolation and minimal regression-tested fixes. |
-| [`ui-ux-reviewer`](skills/ui-ux-reviewer/SKILL.md) | Review concrete user journeys for usability, accessibility and visual hierarchy, separating observed friction from preferences. |
-| [`performance-optimizer`](skills/performance-optimizer/SKILL.md) | Find measured application bottlenecks and validate focused optimizations under comparable workloads. |
-| [`saas-architect`](skills/saas-architect/SKILL.md) | Design lean multi-tenant SaaS capabilities with explicit isolation, entitlements, billing state and operating-cost assumptions. |
-| [`ai-rag-engineer`](skills/ai-rag-engineer/SKILL.md) | Build and evaluate retrieval-augmented generation with evidence quality, access filtering, provenance and cost controls. |
-| [`code-reviewer`](skills/code-reviewer/SKILL.md) | Review a concrete diff for actionable correctness, security and compatibility regressions with precise evidence. |
-| [`blender-3d-expert`](skills/blender-3d-expert/SKILL.md) | Plan and execute editable Blender workflows with scene inspection, real scale and measured web-export budgets. |
+![Example workflow: install a skill, use it in an agent, get a structured report (illustrative output)](docs/demo.svg)
 
-Each folder contains `SKILL.md`, `CHECKLIST.md` and `EXAMPLES.md`. The examples describe expected procedures; they do not pretend an imaginary project was audited.
+<sub>Step 1 shows real CLI output. Step 3 is an <b>illustrative example</b> of the report format the skill requires, not the result of a real audit.</sub>
 
-## Installation
+## Quick start
 
-### From this checkout, today
-
-Requires **Node.js 22+** and npm. Open a terminal in this folder, independently of any surrounding application:
+Requires **Node.js 22+** and npm.
 
 ```sh
+git clone https://github.com/saksham-techlabs/ai-builder-skills-pack.git
+cd ai-builder-skills-pack
 npm ci
-npm run check
-npm run cli -- init
-```
 
-`init` prompts for a preset and one or more skill IDs or menu numbers. Choose comma- or space-separated entries, or `all`. The target defaults to the directory you ran the command from (for `npm run cli`, that is the directory where you invoked npm); use `--target` to select your application explicitly.
-
-```sh
+# Pick skills interactively for your app
 npm run cli -- init --target "../my-app"
-npm run cli -- install security-auditor debugging-expert --preset codex --target "../my-app"
+
+# …or install directly
+npm run cli -- install security-auditor --preset cursor --target "../my-app"
 ```
 
-Only this pack needs development dependencies. The destination application gets Markdown files and installation receipts, not npm dependencies.
+Your app receives plain Markdown files plus an installation receipt. It gets no npm dependencies and no config edits.
 
-### After a verified npm release
+> **Not on npm yet.** The intended package name is `ai-builder-skills`, but it has not been published. Don't run `npx ai-builder-skills` until a verified release exists; it may fail or resolve an unrelated package.
 
-The intended command is:
+## Skills
 
-```sh
-npx ai-builder-skills init
-```
+| Skill | Best for | What the agent does |
+| --- | --- | --- |
+| 🔐 [`security-auditor`](skills/security-auditor/SKILL.md) | Security reviews, pre-release audits | Audits trust boundaries; reports only evidence-backed findings with prioritized, testable fixes |
+| 🐞 [`debugging-expert`](skills/debugging-expert/SKILL.md) | Runtime failures, intermittent bugs | Reproduce → trace → root cause → minimal fix with a regression check |
+| 🔍 [`code-reviewer`](skills/code-reviewer/SKILL.md) | Pull requests, change reviews | Reviews a concrete diff for correctness, security and compatibility regressions |
+| 🧩 [`frontend-expert`](skills/frontend-expert/SKILL.md) | UI implementation, interaction bugs | Reuses your component system, with accessible states and real browser evidence |
+| ▲ [`nextjs-expert`](skills/nextjs-expert/SKILL.md) | Routing, rendering and caching issues | Works against the **installed** Next.js version, not memory |
+| 🎨 [`ui-ux-reviewer`](skills/ui-ux-reviewer/SKILL.md) | Interface reviews, user journeys | Separates observed usability/accessibility friction from preference |
+| ⚡ [`performance-optimizer`](skills/performance-optimizer/SKILL.md) | Slow apps, resource usage | Finds measured bottlenecks; validates fixes under comparable workloads |
+| 🏗️ [`backend-architect`](skills/backend-architect/SKILL.md) | Service design, backend evolution | Service boundaries, durable jobs and failure handling from real constraints |
+| 🔌 [`api-designer`](skills/api-designer/SKILL.md) | API design, integration contracts | Explicit validation, resource authorization, compatibility and retry semantics |
+| 🗄️ [`database-optimizer`](skills/database-optimizer/SKILL.md) | Slow queries, schema performance | Requires query plans and workload shape before recommending indexes |
+| 🟩 [`supabase-expert`](skills/supabase-expert/SKILL.md) | Supabase apps, tenant isolation | Auth, RLS policies, Storage and server clients with explicit isolation |
+| 🏢 [`saas-architect`](skills/saas-architect/SKILL.md) | SaaS planning, multi-tenant systems | Isolation, entitlements, billing state and operating-cost assumptions |
+| 🧠 [`ai-rag-engineer`](skills/ai-rag-engineer/SKILL.md) | Document Q&A, AI knowledge features | Retrieval with access filtering, provenance, evaluation and cost controls |
+| 🧊 [`blender-3d-expert`](skills/blender-3d-expert/SKILL.md) | Blender scenes, web 3D assets | Editable scenes, real scale and measured web-export budgets |
 
-**Do not use that command to obtain this unpublished checkout.** Until the maintainer controls and publishes the package name, npm may fail or resolve an unrelated package. Use the local commands above.
+Each skill folder contains `SKILL.md` (the workflow), `CHECKLIST.md` (coverage tracking) and `EXAMPLES.md` (request patterns). The examples describe procedures; they never pretend an imaginary project was audited.
 
-## CLI usage
+## Why use this instead of writing prompts manually?
 
-The examples below run from the pack root:
-
-```sh
-npm run cli -- list
-npm run cli -- help
-npm run cli -- init
-npm run cli -- install security-auditor --target "../my-app"
-npm run cli -- install frontend-expert nextjs-expert --preset cursor --target "../my-app"
-npm run cli -- install --all --preset generic --target "../my-app"
-npm run cli -- installed --target "../my-app"
-npm run cli -- remove security-auditor --target "../my-app"
-```
-
-| Command/option | Behavior |
+| Ad-hoc prompt | Skill |
 | --- | --- |
-| `init` | Interactive preset and multi-skill selection; accepts explicit IDs/options for automation |
-| `list` | Available skills from `skills.json` |
-| `install <id...>` | Copy selected skills; `--all` installs the catalog |
-| `installed` | Show owned installations, versions and edit status; scans all presets by default |
-| `remove <id...>` | Remove named, owned skills; detects the preset, or asks for `--preset` if the skill is installed for several tools |
-| `help`, `--help`, `-h` | Usage and options |
-| `--preset <name>` | `generic`, `cursor`, `codex` or `claude`; `install` defaults to `generic` |
-| `--target <path>` | Target project; defaults to the directory you ran the command from; quote paths containing spaces |
-| `--force` | Explicitly replace managed installations or discard modified owned files during removal |
+| Rewritten each time; quality depends on memory | Same reviewed workflow every run, versioned in `skills.json` |
+| “Check security” → agent guesses what matters | Explicit steps: authN, authZ/IDOR, secrets, injection, RLS, rate limits, CSRF/CORS |
+| Agent may report plausible but unverified issues | Decision rules: a finding needs code evidence and an attack path; hypotheses are labeled |
+| “Looks good” when the agent couldn't actually check | Required split: confirmed / needs evidence / no issue observed / **not run** |
+| No clear finish line | Definition of done plus a structured, prioritized output format |
 
-Noninteractive installation requires IDs or `--all`. Unknown flags, unknown IDs and missing arguments fail with a nonzero exit code.
+A skill doesn't make an agent infallible. It encodes the decisions that matter, so a review or fix is repeatable and its gaps are visible.
 
-### Your files stay yours
+## Use with your agent
 
-Existing skills are never overwritten by default. `--force` replaces only a valid managed installation and can discard local edits; back up changes first. Unknown directories, extra files and symbolic links are refused even with `--force`. Manually copied skills are not automatically adopted or removed.
+| Preset | Installs to | Flag |
+| --- | --- | --- |
+| Cursor | `.cursor/skills/<id>/` | `--preset cursor` |
+| Codex | `.agents/skills/<id>/` | `--preset codex` |
+| Claude Code | `.claude/skills/<id>/` | `--preset claude` |
+| Generic | `.ai-builder/skills/<id>/` | `--preset generic` (default) |
 
-Installations contain the three canonical files, a generated `USAGE.md`, and `.ai-builder-install.json` with file hashes. Keep the receipt if you want installer-managed listing/removal. No agent settings, `AGENTS.md`, `CLAUDE.md`, application dependencies or routes are edited.
-
-A whole batch is not transactional. See [failure and recovery](docs/architecture.md#failure-and-recovery) for interruption and disk-error behavior.
-
-## Manual usage
-
-No CLI or paid API is required to read and use the skills.
-
-1. Open a relevant `skills/<id>/SKILL.md`.
-2. Attach or paste it into your agent's context with the specific task.
-3. Include the companion checklist/examples when relevant. If copying files, keep all three together so relative links work.
-4. Ask the agent to inspect the actual project and disclose checks it could not run.
-
-Example request:
-
-> Read skills/debugging-expert/SKILL.md. Diagnose the failed settings save. First reproduce the error and trace the actual request. Make the smallest safe fix and report real verification results.
-
-The destination path may differ; name the actual copied file.
-
-## Tool presets
-
-| Preset | Project-local destination |
-| --- | --- |
-| Generic | `.ai-builder/skills/<id>/` |
-| Cursor | `.cursor/skills/<id>/` |
-| Codex | `.agents/skills/<id>/` |
-| Claude Code | `.claude/skills/<id>/` |
-
-These are conservative file-copy presets, not plugins, permission grants or guarantees of automatic loading. Generic is this project's convention. Tool-specific paths follow the official [Cursor skills documentation](https://cursor.com/docs/skills), [Codex skills documentation](https://developers.openai.com/codex/skills/) and [Claude Code skills documentation](https://code.claude.com/docs/en/skills), checked on October 5, 2026. Exact integration paths, invocation syntax and discovery behavior may evolve between versions. Explicitly loading the file remains the fallback.
-
-### Cursor example
+### Cursor
 
 ```sh
 npm run cli -- install frontend-expert --preset cursor --target "../my-app"
 ```
 
-In the target project's Cursor chat, attach `.cursor/skills/frontend-expert/SKILL.md` and ask:
+In Cursor chat, attach `.cursor/skills/frontend-expert/SKILL.md` and ask:
 
 > Use this skill to fix the settings form's loading and error states. Reuse our existing components and verify keyboard behavior.
 
-See [the complete example](examples/cursor-example/README.md).
+[Full Cursor example →](examples/cursor-example/README.md)
 
-### Codex example
+### Codex
 
 ```sh
 npm run cli -- install security-auditor --preset codex --target "../my-app"
 ```
 
-In the target project's Codex chat:
-
 > Read .agents/skills/security-auditor/SKILL.md and audit authentication and organization access. Report confirmed findings separately from unknowns. Do not make code changes in this audit.
 
-See [the complete example](examples/codex-example/README.md).
+[Full Codex example →](examples/codex-example/README.md)
 
-### Claude Code example
+### Claude Code
 
 ```sh
 npm run cli -- install debugging-expert --preset claude --target "../my-app"
 ```
 
-In the target project's Claude Code session:
-
 > Read .claude/skills/debugging-expert/SKILL.md. Reproduce the duplicate submission bug, trace the root cause and implement the smallest safe fix. State exactly which checks ran.
 
-If your installed version discovers the skill, use its supported skill selector/invocation. This pack does not change tool permissions or force automatic invocation.
+### Any other agent (no CLI needed)
 
-## How skills work
+Open `skills/<id>/SKILL.md`, paste or attach it with your task, and ask the agent to inspect the real project and disclose checks it could not run. Keep the three files together so relative links work. [Generic example →](examples/generic-example/README.md)
+
+Presets are conservative file copies, not plugins or permission grants. Paths follow the official [Cursor](https://cursor.com/docs/skills), [Codex](https://developers.openai.com/codex/skills/) and [Claude Code](https://code.claude.com/docs/en/skills) skills documentation (checked October 5, 2026). Discovery behavior can change between tool versions; explicitly loading `SKILL.md` always works as a fallback.
+
+## CLI
+
+```sh
+npm run cli -- list                                                    # available skills
+npm run cli -- init --target "../my-app"                               # interactive picker
+npm run cli -- install security-auditor --target "../my-app"           # generic preset
+npm run cli -- install frontend-expert nextjs-expert --preset cursor --target "../my-app"
+npm run cli -- install --all --preset claude --target "../my-app"
+npm run cli -- installed --target "../my-app"                          # versions + edit status
+npm run cli -- remove security-auditor --target "../my-app"
+```
+
+| Command / option | Behavior |
+| --- | --- |
+| `init` | Interactive preset and multi-skill selection; accepts explicit IDs/options for automation |
+| `list` | Available skills from `skills.json` |
+| `install <id...>` | Copy selected skills; `--all` installs the catalog |
+| `installed` | Owned installations, versions and edit status; scans all presets by default |
+| `remove <id...>` | Remove named, owned skills; detects the preset or asks for `--preset` if ambiguous |
+| `help`, `--help`, `-h` | Usage and options |
+| `--preset <name>` | `generic`, `cursor`, `codex` or `claude`; `install` defaults to `generic` |
+| `--target <path>` | Target project; defaults to the directory you ran the command from |
+| `--force` | Replace a managed installation or discard modified owned files during removal |
+
+Noninteractive installation requires IDs or `--all`. Unknown flags, unknown IDs and missing arguments exit nonzero.
+
+### Your files stay yours
+
+- Existing skills are **never overwritten by default**. `--force` replaces only a valid managed installation (back up local edits first).
+- Unknown directories, extra files and symbolic links are refused, even with `--force`.
+- Each install writes the three canonical files, a generated `USAGE.md` and an `.ai-builder-install.json` receipt with file hashes.
+- No agent settings, `AGENTS.md`, `CLAUDE.md`, dependencies or routes are edited.
+- Batches are not transactional. See [failure and recovery](docs/architecture.md#failure-and-recovery).
+
+## How it works
 
 ![Canonical source through validated installation to an evidence-based task](docs/workflow.svg)
 
-- **Discover:** read real project instructions, versions, code and tool availability.
-- **Decide:** choose a workflow using explicit evidence and domain-specific decision rules.
-- **Verify:** run relevant checks when available; separate facts, hypotheses and missing access.
-- **Report:** provide prioritized, actionable output with a clear definition of done.
+1. **Discover:** read real project instructions, versions, code and tool availability.
+2. **Decide:** choose a workflow using explicit evidence and domain-specific decision rules.
+3. **Verify:** run relevant checks when available; separate facts, hypotheses and missing access.
+4. **Report:** produce prioritized, actionable output with a clear definition of done.
 
-The agent still needs access to your project and appropriate tools. The Blender skill cannot create a scene without Blender access. The RAG skill cannot claim retrieval quality without evaluation data. A security checklist cannot certify an application.
-
-## Repository structure
+The agent still needs access to your project and appropriate tools. The Blender skill can't build a scene without Blender access, the RAG skill can't claim retrieval quality without evaluation data, and a security checklist can't certify an application.
 
 ```text
 ai-builder-skills-pack/
-├── skills/                 # One source of truth; 14 folders, three files each
-├── skills.json             # Versioned skill catalog
-├── adapters/               # Four path configs and small usage templates
-├── src/
-│   ├── cli/                # Arguments and terminal interaction
-│   └── core/               # Validation and safe filesystem operations
-├── scripts/                # Catalog/content validation entry point
-├── tests/                  # Real CLI and filesystem tests
-├── docs/                   # Setup, authoring and architecture
-├── examples/               # Copyable requests for target tools
-└── .github/workflows/      # Windows/Linux, Node 22/24 checks
+├── skills/              # Single source of truth: 14 folders × 3 files
+├── skills.json          # Versioned skill catalog
+├── adapters/            # Per-tool install paths + usage templates
+├── src/cli/             # Arguments and terminal interaction
+├── src/core/            # Validation and safe filesystem operations
+├── scripts/             # Catalog/content validation
+├── tests/               # Real CLI, filesystem and packaging tests
+├── docs/                # Getting started, authoring, architecture
+├── examples/            # Copyable requests per tool
+└── .github/workflows/   # CI: Ubuntu + Windows, Node 22 + 24
 ```
 
-See [the complete source tree](docs/architecture.md#source-tree) and [getting started](docs/getting-started.md).
-
-## Creating custom skills
-
-Follow [Creating a skill](docs/creating-a-skill.md). Add a folder with the three required files, register it in `skills.json`, update the README table and run:
-
-```sh
-npm run validate
-npm test
-npm run test:package
-```
-
-No CLI code changes are needed for a new manifest entry. The current schema deliberately accepts only the three canonical Markdown files; executable helpers or extra resources require a reviewed schema/installer extension.
+More detail: [getting started](docs/getting-started.md) · [architecture](docs/architecture.md) · [creating a skill](docs/creating-a-skill.md)
 
 ## Contributing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md). Contributions should add a useful decision rule, a realistic behavior evaluation or a tested installer improvement. Keep canonical content out of adapters. Sensitive reports follow [SECURITY.md](SECURITY.md).
+Contributions are welcome. The most useful ones add:
+
+- a **decision rule** that prevents a real agent mistake,
+- a **realistic behavior evaluation**, or
+- a **tested installer improvement**.
+
+To add a skill, create a folder with the three required files, register it in `skills.json`, add it to the table above and run:
+
+```sh
+npm run check          # typecheck + validate skills + tests
+npm run test:package   # pack and install from the tarball
+```
+
+No CLI code changes are needed for a new catalog entry. Read [CONTRIBUTING.md](CONTRIBUTING.md) first; report security issues via [SECURITY.md](SECURITY.md).
 
 ## Roadmap
 
-- Add small, sanitized evaluation repositories to test whether agents follow evidence and scope constraints.
-- Publish a tested compatibility matrix for specific agent versions.
-- Add preview/diff support before updates, preserving user customizations.
-- Add machine-readable CLI output and optional skill discovery filters.
-- Verify package ownership, repository metadata and private reporting before the first npm release.
+- [ ] Small, sanitized evaluation repositories to test whether agents follow evidence and scope rules
+- [ ] Tested compatibility matrix for specific agent versions
+- [ ] Preview/diff before updates, preserving user customizations
+- [ ] Machine-readable CLI output and skill discovery filters
+- [ ] Verified npm release (`npx ai-builder-skills init`)
 
-These are planned improvements, not shipped features. There are no adoption, benchmark or certification claims.
+These are planned, not shipped. This project makes no adoption, benchmark or certification claims.
 
 ## License
 
-[MIT](LICENSE).
-
+[MIT](LICENSE)

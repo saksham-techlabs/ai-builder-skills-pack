@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="700" viewBox="0 0 1040 700" role="img" aria-labelledby="title desc">
+  <title id="title">Example workflow: install a skill, use it in an agent, get a structured report</title>
+  <desc id="desc">Step one shows the real CLI output of installing security-auditor for Cursor. Step two shows a request to the agent. Step three is an illustrative, not real, security report in the format the skill requires: scope, confirmed findings, items needing evidence, checks with no issue, checks not run and remediation order.</desc>
+  <style>
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: 13.5px; }
+    .sans { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .step { animation: reveal .6s ease-out both; }
+    .s2 { animation-delay: 1.2s; }
+    .s3 { animation-delay: 2.4s; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .step { animation: none; } }
+  </style>
+  <rect width="1040" height="700" rx="16" fill="#0d1117"/>
+  <text x="24" y="38" class="sans" font-size="18" font-weight="700" fill="#e6edf3">AI Builder Skills Pack &#8212; example workflow</text>
+  <text x="1016" y="38" class="sans" font-size="13" fill="#8b949e" text-anchor="end">install &#8594; use &#8594; structured engineering output</text>
+
+  <g class="step">
+    <rect x="24" y="58" width="992" height="128" rx="10" fill="#161b22" stroke="#30363d"/>
+    <circle cx="44" cy="78" r="5" fill="#f85149"/><circle cx="62" cy="78" r="5" fill="#d29922"/><circle cx="80" cy="78" r="5" fill="#3fb950"/>
+    <text x="100" y="83" class="sans" font-size="13" font-weight="600" fill="#c9d1d9">1  Install a skill</text>
+    <text x="1000" y="83" class="sans" font-size="12" fill="#8b949e" text-anchor="end">real CLI output &#183; npm banner trimmed &#183; path shortened</text>
+    <g class="mono">
+      <text x="44" y="116"><tspan fill="#3fb950">$</tspan><tspan fill="#e6edf3"> npm run cli -- install security-auditor --preset cursor --target ../my-app</tspan></text>
+      <text x="44" y="142" fill="#c9d1d9">Installed /path/to/my-app/.cursor/skills/security-auditor</text>
+      <text x="44" y="166" fill="#c9d1d9">Read USAGE.md in each installed folder for loading instructions.</text>
+    </g>
+  </g>
+
+  <g class="step s2">
+    <rect x="24" y="200" width="992" height="104" rx="10" fill="#161b22" stroke="#30363d"/>
+    <text x="44" y="225" class="sans" font-size="13" font-weight="600" fill="#c9d1d9">2  Use it in Cursor, Codex or Claude Code</text>
+    <g class="mono">
+      <text x="44" y="256"><tspan fill="#a5d6ff">You &#8250;</tspan><tspan fill="#e6edf3"> Use security-auditor to inspect auth, authorization, secrets, APIs and Supabase RLS.</tspan></text>
+      <text x="44" y="280" fill="#e6edf3" xml:space="preserve">      Report confirmed findings separately from unknowns. Do not edit code.</text>
+    </g>
+  </g>
+
+  <g class="step s3">
+    <rect x="24" y="318" width="992" height="360" rx="10" fill="#161b22" stroke="#2f6f5e"/>
+    <text x="44" y="343" class="sans" font-size="13" font-weight="600" fill="#c9d1d9">3  Structured engineering output</text>
+    <rect x="752" y="328" width="248" height="22" rx="11" fill="#3b2e0a" stroke="#d29922"/>
+    <text x="876" y="343" class="sans" font-size="12" font-weight="600" fill="#e3b341" text-anchor="middle">ILLUSTRATIVE EXAMPLE &#183; not a real audit</text>
+    <g class="mono">
+      <text x="44" y="374"><tspan fill="#7ee787" font-weight="700">Scope</tspan><tspan fill="#c9d1d9">  auth &#183; org access &#183; API routes &#183; Supabase policies &#8212; production not accessed</tspan></text>
+
+      <text x="44" y="406" fill="#7ee787" font-weight="700">Confirmed findings</text>
+      <text y="430" fill="#8b949e"><tspan x="44">ID</tspan><tspan x="88">Severity</tspan><tspan x="178">Confidence</tspan><tspan x="282">Location</tspan><tspan x="560">Issue &#8594; smallest fix</tspan></text>
+      <text y="452" fill="#e6edf3"><tspan x="44">F-1</tspan><tspan x="88" fill="#ff7b72">High</tspan><tspan x="178">High</tspan><tspan x="282">app/api/invoices/[id]/route.ts:18</tspan><tspan x="560">No org check &#8594; scope by org_id + test</tspan></text>
+
+      <text x="44" y="486" fill="#7ee787" font-weight="700">Needs evidence</text>
+      <text y="508" fill="#c9d1d9"><tspan x="44">H-1</tspan><tspan x="88">Live RLS state unknown (migrations only) &#8594; verify with a non-privileged test user</tspan></text>
+
+      <text x="44" y="542" fill="#7ee787" font-weight="700">No issue observed</text>
+      <text y="564" fill="#c9d1d9"><tspan x="44" fill="#3fb950">&#10003;</tspan><tspan x="88">Service-role key referenced only in server-side code</tspan></text>
+
+      <text x="44" y="598" fill="#7ee787" font-weight="700">Not run</text>
+      <text y="620" fill="#c9d1d9"><tspan x="44" fill="#d29922">&#8211;</tspan><tspan x="88">Dependency advisory scan (no network access) &#8594; run npm audit in CI</tspan></text>
+
+      <text x="44" y="656"><tspan fill="#7ee787" font-weight="700">Remediation order</tspan><tspan fill="#c9d1d9">  F-1 &#8594; H-1 &#8594; advisory scan</tspan></text>
+    </g>
+  </g>
+</svg>
